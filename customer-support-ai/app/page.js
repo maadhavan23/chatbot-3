@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
+import Typography from '@mui/material/Typography'; // Import Typography
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Define your themes
@@ -19,8 +20,8 @@ const lightTheme = createTheme({
       main: '#92DCE5',
     },
     background: {
-      default: '#EEE5E9',
-      paper: '#ffffff',
+      default: '#FEECEB',
+      paper: '#FEECEB',
     },
     text: {
       primary: '#D64933',
@@ -144,6 +145,12 @@ export default function Home() {
             backgroundColor: theme.palette.background.paper,
           }}
         >
+          <Box mb={2}>
+            <Typography variant="h4" component="h1" sx={{ color: theme.palette.text.primary }}>
+            charismacrafter-and-its-the-same-but-its-in-nextjs-so-its-not
+            </Typography>
+          </Box>
+
           <Stack direction="column" spacing={2} mb={2}>
             {messages.map((message, index) => (
               <Box
@@ -179,7 +186,7 @@ export default function Home() {
               variant="outlined"
               size="small"
             />
-            <Button variant="contained" onClick={handleSend}>
+            <Button variant="contained" onClick={handleSend} sx={{ backgroundColor: '#92DCE5' }}>
               Send
             </Button>
           </Stack>
