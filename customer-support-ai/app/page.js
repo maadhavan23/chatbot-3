@@ -62,7 +62,6 @@ export default function Home() {
 
   const [inputValue, setInputValue] = useState("");
   const [darkMode, setDarkMode] = useState(false);
-  const [message, setMessage] = useState("");
 
   // Save and load theme preference from localStorage
   useEffect(() => {
@@ -81,8 +80,9 @@ export default function Home() {
 
   const handleSend = () => {
     if (inputValue.trim()) {
-      setMessages([...messages, { role: 'user', content: inputValue }]);
-      sendMessage(inputValue);
+      const userMessage = { role: 'user', content: inputValue };
+      setMessages([...messages, userMessage]);
+      sendMessage(userMessage);
       setInputValue(""); // Clear input field after sending
     }
   };
@@ -94,13 +94,13 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt: message }),
+        body: JSON.stringify({ messages: [...messages, message] }),
       });
 
       const data = await response.json();
       setMessages((prevMessages) => [
         ...prevMessages,
-        { role: 'assistant', content: data.message }
+        { role: 'assistant', content: data.choices[0]?.message?.content || 'No response' }
       ]);
     } catch (error) {
       console.error("Error sending message:", error);
