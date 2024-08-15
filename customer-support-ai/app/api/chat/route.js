@@ -21,7 +21,7 @@ export async function POST(req) {
         ...userMessages,
       ],
       model: 'llama3-8b-8192',
-      temperature: 0.5,
+      temperature: 1.0,
       max_tokens: 1024,
       top_p: 1,
       stop: null,
