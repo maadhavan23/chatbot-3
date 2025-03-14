@@ -99,10 +99,12 @@ export default function Home() {
       });
 
       const data = await response.json();
+      console.log("API Response1:", response);
       setMessages((prevMessages) => [
         ...prevMessages,
         { role: 'assistant', content: data.choices[0]?.message?.content || 'No response' }
       ]);
+      console.log("API Response2:", response);
     } catch (error) {
       console.error("Error sending message:", error);
     }
