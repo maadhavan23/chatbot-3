@@ -8,6 +8,7 @@ const systemPrompt = 'You are an AI designed to deliver over-the-top, peculiar c
 export async function POST(req) {
   try {
     const data = await req.json();
+    console.log("full data" , data);
     const userMessages = data.messages || [];
 
     // Ensure that messages are an array and include a system prompt
@@ -32,6 +33,10 @@ export async function POST(req) {
 
   } catch (error) {
     console.error('Error creating completion:', error);
-    return NextResponse.json({ message: 'Error creating completion', error: error.message }, { status: 500 });
+    return NextResponse.json({ 
+      message: 'Error creating completion', 
+      error: error.message,
+      stack: error.stack }, 
+      { status: 500 });
   }
 }
